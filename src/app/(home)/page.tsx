@@ -1,6 +1,6 @@
-const page = () => {
+const page = async () => {
   return (
-    <div className="bg-pink-200 flex-1 min-h-0 overflow-hidden ">page</div>
+    <div className="bg-neutral-200 flex-1 min-h-0 overflow-hidden">page</div>
   );
 };
 

@@ -26,7 +26,7 @@ const Sidebar = () => {
             key={index}
             className="rounded-sm  p-1.5 flex items-center gap-2 hover:bg-neutral-100 transition-all cursor-pointer"
           >
-            <div className="size-6 rounded-sm bg-red-400 text-white flex items-center justify-center">
+            <div className="size-6 rounded-sm bg-black text-white flex items-center justify-center">
               <span>i</span>
             </div>
             <span>Sidebar Action {index + 1}</span>
@@ -53,7 +53,7 @@ const Sidebar = () => {
 
       {/* Sidebar Bottom link */}
       <div className="rounded-sm  p-1.5 flex items-center gap-2 hover:bg-neutral-100 transition-all cursor-pointer mt-auto">
-        <div className="size-6 rounded-sm bg-red-400 text-white flex items-center justify-center">
+        <div className="size-6 rounded-sm bg-black text-white flex items-center justify-center">
           <span>i</span>
         </div>
         <span>Sidebar Action </span>
