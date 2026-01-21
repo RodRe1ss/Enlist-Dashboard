@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 *::-webkit-scrollbar {
@@ -30,6 +29,55 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+@theme base {
+  /* gradients */
+  --color-gray-gradient: linear-gradient(to right, #d1d5db, #9ca3af);
+
+  /* 
+  - Primary 
+  */
+  --color-primary-25: #f9f6fe;
+  --color-primary-50: #f3e8ff;
+  --color-primary-100: #e4cdff;
+  --color-primary-200: #c39aff;
+  --color-primary-300: #9c63ff;
+  --color-primary-400: #6e2bfa;
+  --color-primary-500: #4b07de;
+  --color-primary-600: #3e05b8;
+  --color-primary-700: #310393;
+  --color-primary-800: #24026e;
+  --color-primary-900: #160149;
+  --color-primary-950: #0c012e;
+
+  /* 
+  - Status
+  */
+
+  /* Completed */
+  --color-completed: #e9f7f0;
+  --color-completed-border: #c9eedf;
+  --color-completed-text: #127457;
+  --color-completed-accent: #059669;
+
+  /* Pending */
+  --color-pending: #fef9c3;
+  --color-pending-border: #fde68a;
+  --color-pending-text: #92400e;
+  --color-pending-accent: #f59e0b;
+
+  /* Error */
+  --color-error: #fee2e2;
+  --color-error-border: #fca5a5;
+  --color-error-text: #991b1b;
+  --color-error-accent: #dc2626;
+
+  /* Info */
+  --color-info: #dbeafe;
+  --color-info-border: #bfdbfe;
+  --color-info-text: #1e3a8a;
+  --color-info-accent: #2563eb;
 }
 
 @theme inline {
@@ -193,45 +241,22 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+a,
+label {
   font-family: var(--font-heading);
-  font-weight: 700;
+  /* font-weight: 700; */
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   margin: 0;
-  color: #111827;
 }
 
-h1 {
-  font-size: var(--text-3xl);
-}
-
-h2 {
-  font-size: var(--text-2xl);
-}
-
-h3 {
-  font-size: var(--text-xl);
-}
-
-h4 {
-  font-size: var(--text-lg);
-}
-
-h5 {
-  font-size: var(--text-md);
-}
-
-h6 {
-  font-size: var(--text-base);
-}
-
-p {
+p,
+small {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-loose);
   margin: 0;
-  color: #374151;
 }
 
 span {
@@ -263,16 +288,6 @@ span {
   color: #6b7280;
 }
 
-a {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 strong {
   font-weight: 600;
   color: #111827;
@@ -292,4 +307,81 @@ textarea {
 button {
   font-weight: 500;
   letter-spacing: 0.01em;
+}
+
+/* colors */
+.primary-mix {
+  @apply bg-linear-210 from-primary-400 to-primary-300;
+}
+
+.gray-mix {
+  @apply bg-linear-210 from-gray-300 to-gray-100;
+}
+
+.blue-mix {
+  @apply bg-linear-210 from-blue-600 to-sky-500;
+}
+
+.sky-mix {
+  @apply bg-linear-210 from-sky-600 to-cyan-500;
+}
+
+.cyan-mix {
+  @apply bg-linear-210 from-cyan-600 to-teal-500;
+}
+
+.teal-mix {
+  @apply bg-linear-210 from-teal-600 to-emerald-500;
+}
+
+.emerald-mix {
+  @apply bg-linear-210 from-emerald-600 to-green-500;
+}
+
+.green-mix {
+  @apply bg-linear-210 from-green-600 to-lime-500;
+}
+
+.lime-mix {
+  @apply bg-linear-210 from-lime-500 to-emerald-400;
+}
+
+.yellow-mix {
+  @apply bg-linear-210 from-yellow-500 to-amber-400;
+}
+
+.amber-mix {
+  @apply bg-linear-210 from-amber-500 to-orange-400;
+}
+
+.orange-mix {
+  @apply bg-linear-210 from-orange-600 to-rose-500;
+}
+
+.rose-mix {
+  @apply bg-linear-210 from-rose-600 to-red-500;
+}
+
+.red-mix {
+  @apply bg-linear-210 from-red-600 to-orange-500;
+}
+
+.pink-mix {
+  @apply bg-linear-210 from-pink-600 to-rose-500;
+}
+
+.hotpink-mix {
+  @apply bg-linear-210 from-rose-500 to-pink-500;
+}
+
+.aqua-mix {
+  @apply bg-linear-210 from-cyan-500 to-blue-500;
+}
+
+.spring-mix {
+  @apply bg-linear-210 from-green-500 to-teal-400;
+}
+
+.sunset-mix {
+  @apply bg-linear-210 from-amber-500 to-rose-400;
 }

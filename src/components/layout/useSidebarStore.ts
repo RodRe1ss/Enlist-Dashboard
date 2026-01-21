@@ -6,7 +6,7 @@ type SidebarStore = {
   resetSidebar: () => void;
 };
 
-const useSidebarStore = create<SidebarStore>()((set) => ({
+export const useSidebarStore = create<SidebarStore>()((set) => ({
   isSidebarOpen: false,
   toggleSidebar: () =>
     set((state) => ({
