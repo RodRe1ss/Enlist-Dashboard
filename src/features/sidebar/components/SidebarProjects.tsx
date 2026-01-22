@@ -3,20 +3,12 @@ import { cn } from "@/lib/utils";
 import { Project } from "@/types";
 import { Plus } from "lucide-react";
 import Link from "next/link";
-import Loading from "@/components/shared/loading";
 
 type Props = {
   projects: Project[];
 };
 
 const SidebarProjects = ({ projects }: Props) => {
-  if (!projects)
-    return (
-      <div className="flex-1 justify-center items-center">
-        <Loading />
-      </div>
-    );
-
   return (
     <div className="flex flex-col gap-0.5 mt-20">
       <div className="rounded-sm flex items-center justify-between hover:bg-gray-200 p-1.5 group">

@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 const SidebarSkeleton = () => {
   return (
@@ -17,7 +18,9 @@ const SidebarSkeleton = () => {
         {Array.from({ length: 5 }, (_, i) => (
           <div key={i} className="flex items-center gap-2 px-1.5">
             <Skeleton className="size-6 rounded-sm bg-gray-200" />
-            <Skeleton className="h-2.5 w-full bg-gray-200" />
+            <Skeleton
+              className={cn(i === 4 ? "w-28" : "w-20", "h-2.5  bg-gray-200")}
+            />
           </div>
         ))}
       </div>
@@ -33,7 +36,12 @@ const SidebarSkeleton = () => {
           {Array.from({ length: 6 }, (_, i) => (
             <div key={i} className="flex items-center gap-2 px-1.5">
               <Skeleton className="size-6 rounded-sm bg-gray-200" />
-              <Skeleton className="h-2.5 w-full bg-gray-200" />
+              <Skeleton
+                className={cn(
+                  i % 2 === 0 ? "w-32" : "w-26",
+                  "h-2.5 bg-gray-200",
+                )}
+              />
             </div>
           ))}
         </div>
@@ -52,7 +60,7 @@ const SkeletonProfileButton = () => {
   return (
     <div className="h-4 flex items-center  gap-2 px-1.5">
       <Skeleton className="size-6 rounded-sm bg-gray-200" />
-      <Skeleton className="h-2.5 w-24 bg-gray-200" />
+      <Skeleton className="h-2.5 w-20 bg-gray-200" />
     </div>
   );
 };
