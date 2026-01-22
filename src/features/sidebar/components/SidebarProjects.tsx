@@ -1,11 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { getProjects } from "@/db";
 import { cn } from "@/lib/utils";
+import { Project } from "@/types";
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import Loading from "@/components/shared/loading";
 
-const SidebarProjects = async () => {
-  const projects = await getProjects("wrk_1a9c4f7e2b8d");
+type Props = {
+  projects: Project[];
+};
+
+const SidebarProjects = ({ projects }: Props) => {
+  if (!projects)
+    return (
+      <div className="flex-1 justify-center items-center">
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="flex flex-col gap-0.5 mt-20">

@@ -1,13 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Bell,
-  Calendar1,
-  CalendarDays,
-  Plus,
-  Search,
-  SquareKanban,
-} from "lucide-react";
-import Link from "next/link";
+import { Calendar1, CalendarDays, Plus, Search, Sparkles } from "lucide-react";
 
 const SidebarActions = () => {
   return (
@@ -37,16 +29,10 @@ const SidebarActions = () => {
       <Button
         variant={"ghost"}
         className="justify-start gap-2 h-8.5 rounded-sm  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5 text-gray-600"
-        asChild
       >
-        <Link
-          href={"#"}
-          className="flex items-center gap-2 hover:no-underline!  "
-        >
-          <Calendar1 className=" size-5.5" />
+        <Calendar1 className=" size-5.5" />
 
-          <span>Today</span>
-        </Link>
+        <span>Today</span>
       </Button>
       <Button
         variant={"ghost"}
@@ -55,6 +41,14 @@ const SidebarActions = () => {
         <CalendarDays className="size-5.5" />
 
         <span>Upcoming</span>
+      </Button>
+      <Button
+        variant={"ghost"}
+        className="justify-start gap-2 h-8.5 rounded-sm!  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5! text-gray-600 "
+      >
+        <Sparkles className="size-5.5" />
+
+        <span>Filters & labels</span>
       </Button>
     </div>
   );

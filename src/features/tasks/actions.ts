@@ -1,4 +1,4 @@
-import { TASKS_SEED } from "../mock";
+import { TASKS_SEED } from "@/db/mock";
 
 let tasks = [...TASKS_SEED];
 

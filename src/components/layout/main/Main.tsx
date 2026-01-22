@@ -1,6 +1,7 @@
-import React from "react";
-import Sidebar from "../../../features/sidebar/Sidebar";
+import React, { Suspense } from "react";
+import Sidebar from "@/features/sidebar/components/Sidebar";
 import Header from "../../../features/header/Header";
+import SidebarSkeleton from "@/features/sidebar/components/SidebarSkeleton";
 
 type Props = {
   children: React.ReactNode;
@@ -9,7 +10,11 @@ type Props = {
 const Main = ({ children }: Props) => {
   return (
     <main className="flex h-screen relative overflow-hidden w-full bg-gray-100">
-      <Sidebar />
+      {/* <Sidebar /> */}
+
+      <Suspense fallback={<SidebarSkeleton />}>
+        <Sidebar />
+      </Suspense>
       <div className=" min-h-0 h-full w-full bg-gray-100 p-2">
         <div className="border border-gray-200 rounded-md overflow-hidden min-h-0 h-full w-full flex flex-col">
           <Header />

@@ -1,20 +1,27 @@
+"use client";
+
 import { HelpCircle, PanelLeft } from "lucide-react";
 import SidebarProjects from "./SidebarProjects";
 import SidebarActions from "./SidebarActions";
 import { Button } from "@/components/ui/button";
+import { Project, User, Workspace } from "@/types";
+import ProfileButton from "./ProfileButton";
 
-const Sidebar = () => {
+type Props = {
+  data: {
+    user: User;
+    workspaces: Workspace[];
+    projects: Project[];
+  };
+};
+
+const SidebarClient = ({ data }: Props) => {
   return (
-    <aside className="bg-gray-100 w-72 h-full flex flex-col py-2 pl-2 ">
+    <aside className="bg-gray-100 w-80 h-full flex flex-col py-2 pl-2 ">
       {/* Sidebar top */}
       <div className="flex items-center justify-between h-12 ">
         {/* Profile Button */}
-        <div className="rounded-sm hover:bg-gray-200 transition-all p-1.5 cursor-pointer flex items-center gap-2">
-          <div className="rounded-sm primary-mix text-white flex size-6 items-center justify-center">
-            <span>U</span>
-          </div>
-          <span className="text-gray-600! text-sm! font-medium!">Username</span>
-        </div>
+        <ProfileButton user={data?.user} />
 
         {/* Sidebar layout button */}
         <Button
@@ -30,7 +37,7 @@ const Sidebar = () => {
       <SidebarActions />
 
       {/* Sidebar Projects */}
-      <SidebarProjects />
+      <SidebarProjects projects={data?.projects} />
 
       {/* Sidebar Bottom link */}
       <div className="mt-auto flex items-center gap-2 hover:bg-gray-200 p-1.5 rounded-sm transition-all cursor-pointer ">
@@ -43,4 +50,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarClient;

@@ -1,4 +1,4 @@
-import { WORKSPACES_SEED } from "../mock";
+import { WORKSPACES_SEED } from "@/db/mock";
 
 let workspaces = [...WORKSPACES_SEED];
 

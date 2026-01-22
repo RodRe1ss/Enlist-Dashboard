@@ -1,4 +1,4 @@
-import { PROJECTS_SEED } from "../mock";
+import { PROJECTS_SEED } from "@/db/mock";
 
 let projects = [...PROJECTS_SEED];
 
