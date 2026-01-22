@@ -230,7 +230,6 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
-  color: #1f2937; /* calm dark gray */
   background-color: #f9fafb; /* soft off-white */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -245,10 +244,10 @@ h6,
 a,
 label {
   font-family: var(--font-heading);
-  /* font-weight: 700; */
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   margin: 0;
+  @apply text-gray-700 font-semibold;
 }
 
 p,
@@ -257,56 +256,7 @@ small {
   font-size: var(--text-base);
   line-height: var(--leading-loose);
   margin: 0;
-}
-
-span {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-}
-
-.text-muted {
-  color: #6b7280;
-  font-size: var(--text-sm);
-}
-
-.text-small {
-  font-size: var(--text-sm);
-}
-
-.text-xs {
-  font-size: var(--text-xs);
-}
-
-.text-label {
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: #6b7280;
-}
-
-strong {
-  font-weight: 600;
-  color: #111827;
-}
-
-em {
-  font-style: italic;
-}
-
-button,
-input,
-textarea {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-}
-
-button {
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  @apply text-neutral-600 font-normal;
 }
 
 /* colors */
