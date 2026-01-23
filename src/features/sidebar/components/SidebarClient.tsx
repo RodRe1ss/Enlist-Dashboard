@@ -1,11 +1,24 @@
 "use client";
 
+// Zustand
+import { useSidebarStore } from "../store/useSidebarStore";
+import { useShallow } from "zustand/shallow";
+
+// Types
+import { Project, User, Workspace } from "@/types";
+
+// Icons
 import { HelpCircle, PanelLeft } from "lucide-react";
+
+// Components
 import SidebarProjects from "./SidebarProjects";
 import SidebarActions from "./SidebarActions";
 import { Button } from "@/components/ui/button";
-import { Project, User, Workspace } from "@/types";
 import ProfileButton from "./ProfileButton";
+
+// Motion
+import { motion } from "motion/react";
+import { smoothTransition } from "@/lib/animations/transitions";
 
 type Props = {
   data: {
@@ -16,8 +29,21 @@ type Props = {
 };
 
 const SidebarClient = ({ data }: Props) => {
+  const { isSidebarOpen, toggleSidebar } = useSidebarStore(
+    useShallow((state) => ({
+      isSidebarOpen: state.isSidebarOpen,
+      toggleSidebar: state.toggleSidebar,
+    })),
+  );
+
   return (
-    <aside className="bg-gray-100 w-80 h-full flex flex-col py-2 pl-2 ">
+    <motion.aside
+      initial={{ x: 0 }}
+      animate={{ x: isSidebarOpen ? 0 : -320 }}
+      exit={{ x: 0 }}
+      transition={smoothTransition}
+      className="bg-gray-100 w-80 h-full flex flex-col py-2 pl-2 "
+    >
       {/* Sidebar top */}
       <div className="flex items-center justify-between h-12 ">
         {/* Profile Button */}
@@ -27,7 +53,8 @@ const SidebarClient = ({ data }: Props) => {
         <Button
           variant={"ghost"}
           size={"icon-sm"}
-          className="hover:bg-gray-200 "
+          className="hover:bg-gray-200"
+          onClick={toggleSidebar}
         >
           <PanelLeft />
         </Button>
@@ -46,7 +73,7 @@ const SidebarClient = ({ data }: Props) => {
           Help & Resources
         </span>
       </div>
-    </aside>
+    </motion.aside>
   );
 };
 

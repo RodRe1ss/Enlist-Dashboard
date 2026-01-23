@@ -1,6 +1,6 @@
-import { getProjects } from "../../projects/actions";
-import { getUser } from "../../user/actions";
-import { getWorkspaces } from "../../workspaces/actions";
+import { getProjects } from "@/features/projects/actions";
+import { getUser } from "@/features/user/actions";
+import { getWorkspaces } from "@/features/workspaces/actions";
 import SidebarClient from "./SidebarClient";
 
 import { unstable_noStore as noStore } from "next/cache";

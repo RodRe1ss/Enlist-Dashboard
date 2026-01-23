@@ -1,27 +1,32 @@
-import React, { Suspense } from "react";
-import Sidebar from "@/features/sidebar/components/Sidebar";
-import Header from "../../../features/header/Header";
-import SidebarSkeleton from "@/features/sidebar/components/SidebarSkeleton";
+"use client";
+
+import { useSidebarStore } from "@/features/sidebar/store/useSidebarStore";
+import { smoothTransition } from "@/lib/animations/transitions";
+// Motion
+import { motion } from "motion/react";
+import { useShallow } from "zustand/shallow";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const Main = ({ children }: Props) => {
-  return (
-    <main className="flex h-screen relative overflow-hidden w-full bg-gray-100">
-      {/* <Sidebar /> */}
+  const { isSidebarOpen } = useSidebarStore(
+    useShallow((state) => ({
+      isSidebarOpen: state.isSidebarOpen,
+    })),
+  );
 
-      <Suspense fallback={<SidebarSkeleton />}>
-        <Sidebar />
-      </Suspense>
-      <div className=" min-h-0 h-full w-full bg-gray-100 p-2">
-        <div className="border border-gray-200 rounded-md overflow-hidden min-h-0 h-full w-full flex flex-col">
-          <Header />
-          {children}
-        </div>
-      </div>
-    </main>
+  return (
+    <motion.main
+      initial={{ marginLeft: 0 }}
+      animate={{ marginLeft: isSidebarOpen ? 0 : -320 }}
+      exit={{ marginLeft: 0 }}
+      transition={smoothTransition}
+      className="flex h-screen relative overflow-hidden flex-1 bg-gray-100"
+    >
+      {children}
+    </motion.main>
   );
 };
 
