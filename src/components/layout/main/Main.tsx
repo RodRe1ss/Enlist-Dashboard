@@ -20,7 +20,7 @@ const Main = ({ children }: Props) => {
   return (
     <motion.main
       initial={{ marginLeft: 0 }}
-      animate={{ marginLeft: isSidebarOpen ? 0 : -320 }}
+      animate={{ marginLeft: isSidebarOpen ? 0 : -288 }}
       exit={{ marginLeft: 0 }}
       transition={smoothTransition}
       className="flex h-screen relative overflow-hidden flex-1 bg-gray-100"
