@@ -34,7 +34,7 @@ const Header = () => {
             "transition-all duration-300",
           )}
         >
-          <PanelRight className="text-gray-600" />
+          <PanelRight className="text-gray-600!" />
         </Button>
 
         <span>header</span>
