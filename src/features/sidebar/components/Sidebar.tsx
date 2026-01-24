@@ -1,24 +1,47 @@
+"use client";
+
 import { getProjects } from "@/features/projects/actions";
 import { getUser } from "@/features/user/actions";
 import { getWorkspaces } from "@/features/workspaces/actions";
 import SidebarClient from "./SidebarClient";
+import { useEffect, useState } from "react";
+import { Project, User, Workspace } from "@/types";
+import SidebarSkeleton from "./SidebarSkeleton";
 
-import { unstable_noStore as noStore } from "next/cache";
+type Data = {
+  user: User;
+  workspaces: Workspace[];
+  projects: Project[];
+};
 
-const Sidebar = async () => {
-  noStore();
+const Sidebar = () => {
+  const [data, setData] = useState<Data | null>(null);
 
-  const user = await getUser();
-  const workspaces = user ? await getWorkspaces(user?.id) : [];
-  const projects = workspaces ? await getProjects(workspaces[0].id) : [];
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const user = await getUser();
+        const workspaces = user ? await getWorkspaces(user?.id) : [];
+        const projects = workspaces ? await getProjects(workspaces[0].id) : [];
 
-  const data = {
-    user,
-    workspaces,
-    projects,
-  };
+        setTimeout(
+          () =>
+            setData({
+              user,
+              workspaces,
+              projects,
+            }),
+          2000,
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  await new Promise((r) => setTimeout(r, 2000));
+    getData();
+  }, []);
+
+  if (!data) return <SidebarSkeleton />;
 
   return <SidebarClient data={data} />;
 };

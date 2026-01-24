@@ -38,11 +38,14 @@ const SidebarClient = ({ data }: Props) => {
 
   return (
     <motion.aside
-      initial={{ x: 0 }}
-      animate={{ x: isSidebarOpen ? 0 : -288 }}
-      exit={{ x: 0 }}
+      initial={{ x: 0, opacity: 0 }}
+      animate={{
+        x: isSidebarOpen ? 0 : -224,
+        opacity: isSidebarOpen ? 100 : 0,
+      }}
+      exit={{ x: 0, opacity: 0 }}
       transition={smoothTransition}
-      className="bg-gray-100 w-72 h-full flex flex-col py-2 pl-2 "
+      className="bg-gray-100 w-56 h-full flex flex-col py-2 pl-2 pr-2 sm:pr-0 shadow-lg sm:shadow-none z-20 sm:z-0"
     >
       {/* Sidebar top */}
       <div className="flex items-center justify-between h-12 ">

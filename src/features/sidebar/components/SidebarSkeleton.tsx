@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 const SidebarSkeleton = () => {
   return (
-    <aside className="bg-gray-100 w-72 h-full flex flex-col  py-2 pl-2">
+    <aside className="bg-gray-100 w-56 h-full flex flex-col  py-2 pl-2">
       {/* Sidebar top */}
       <div className="flex items-center justify-between h-12 w-full ">
         {/* Profile Button */}
