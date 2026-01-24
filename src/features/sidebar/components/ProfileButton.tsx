@@ -6,6 +6,7 @@ import { ChevronDown, LogIn, Palette, Settings } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import WorkspaceSwitch from "./WorkspaceSwitch";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   user: User;
@@ -43,35 +44,45 @@ const ProfileButton = ({ user }: Props) => {
       </button>
       <AnimatePresence>
         {isOpen ? (
-          <motion.div
-            initial={{ y: -10, opacity: 0 }}
-            animate={{
-              y: 5,
-              opacity: 100,
-            }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={smoothTransition}
-            className="w-48 absolute top-full left-0 rounded-md bg-white border border-gray-300 shadow-xs p-1"
-          >
-            <WorkspaceSwitch />
+          <>
+            <motion.div
+              initial={{ y: -10, opacity: 0 }}
+              animate={{
+                y: 5,
+                opacity: 100,
+              }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={smoothTransition}
+              className=" w-52 sm:w-54 absolute top-full left-0 rounded-md bg-white border border-gray-200 shadow-xs p-1 z-20"
+            >
+              <WorkspaceSwitch />
 
-            <div className="flex flex-col pt-1">
-              {profileData.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <button
-                    key={i}
-                    className="flex justify-start items-center gap-2 p-2  hover:bg-gray-100 cursor-pointer w-full text-gray-600!"
-                  >
-                    <Icon size={18} />
-                    <h4 className="capitalize font-semibold text-sm">
-                      {item.title}
-                    </h4>
-                  </button>
-                );
-              })}
-            </div>
-          </motion.div>
+              <div className="w-full h-px bg-gray-200 my-1"></div>
+
+              <div className="flex flex-col ">
+                {profileData.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <Button
+                      key={i}
+                      variant={"ghost"}
+                      className="justify-start gap-2 px-2!  hover:bg-gray-100 w-full text-gray-600!"
+                    >
+                      <Icon size={18} />
+                      <h4 className="capitalize font-semibold text-sm">
+                        {item.title}
+                      </h4>
+                    </Button>
+                  );
+                })}
+              </div>
+            </motion.div>
+            <button
+              title="profile-overlay"
+              className="h-screen w-full bg-transparent fixed top-0 left-0 z-10"
+              onClick={() => setIsOpen(false)}
+            ></button>
+          </>
         ) : null}
       </AnimatePresence>
     </div>

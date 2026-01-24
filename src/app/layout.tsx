@@ -32,24 +32,8 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${inter.variable} antialiased bg-gray-100! w-full flex h-screen relative overflow-hidden`}
       >
-        {/* Normal Sidebar*/}
-        <div className="hidden sm:block">
-          <Sidebar />
-        </div>
-
-        {/* Mobile Sidebar */}
-        <SidebarMobile />
-
         {/* Main  */}
-        <Main>
-          <div className=" min-h-0 h-full w-full bg-gray-100 p-2">
-            <div className="border border-gray-200 rounded-md overflow-hidden min-h-0 h-full w-full flex flex-col">
-              {/* Header */}
-              <Header />
-              {children}
-            </div>
-          </div>
-        </Main>
+        <Main>{children}</Main>
       </body>
     </html>
   );

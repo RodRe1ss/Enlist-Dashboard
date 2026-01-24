@@ -7,6 +7,9 @@ import SidebarClient from "./SidebarClient";
 import { useEffect, useState } from "react";
 import { Project, User, Workspace } from "@/types";
 import SidebarSkeleton from "./SidebarSkeleton";
+import { useUserStore } from "@/features/user/store";
+import { useWorkspaceStore } from "@/features/workspaces/store";
+import { useProjectStore } from "@/features/projects/store";
 
 type Data = {
   user: User;
@@ -15,33 +18,13 @@ type Data = {
 };
 
 const Sidebar = () => {
-  const [data, setData] = useState<Data | null>(null);
+  const data: Data = {
+    user: useUserStore.getState().user as User,
+    workspaces: useWorkspaceStore.getState().workspaces as Workspace[],
+    projects: useProjectStore.getState().projects as Project[],
+  };
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const user = await getUser();
-        const workspaces = user ? await getWorkspaces(user?.id) : [];
-        const projects = workspaces ? await getProjects(workspaces[0].id) : [];
-
-        setTimeout(
-          () =>
-            setData({
-              user,
-              workspaces,
-              projects,
-            }),
-          2000,
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getData();
-  }, []);
-
-  if (!data) return <SidebarSkeleton />;
+  if (!data.user) return <SidebarSkeleton />;
 
   return <SidebarClient data={data} />;
 };
