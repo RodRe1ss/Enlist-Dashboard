@@ -38,12 +38,12 @@ const SidebarClient = ({ data }: Props) => {
 
   return (
     <motion.aside
-      initial={{ x: 0, opacity: 0 }}
+      initial={{ marginLeft: 0, opacity: 0 }}
       animate={{
-        x: isSidebarOpen ? 0 : -224,
+        marginLeft: isSidebarOpen ? 0 : -224,
         opacity: isSidebarOpen ? 100 : 0,
       }}
-      exit={{ x: 0, opacity: 0 }}
+      exit={{ marginLeft: 0, opacity: 0 }}
       transition={smoothTransition}
       className="bg-gray-100 w-56 h-full flex flex-col py-2 pl-2 pr-2 sm:pr-0 shadow-lg sm:shadow-none z-20 sm:z-0"
     >

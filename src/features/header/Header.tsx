@@ -7,6 +7,8 @@ import { useShallow } from "zustand/shallow";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { smoothTransition } from "@/lib/animations/transitions";
+import usePageName from "./usePageName";
+import Pagename from "./Pagename";
 
 const Header = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebarStore(
@@ -16,29 +18,35 @@ const Header = () => {
     })),
   );
 
-  return (
-    <header className="bg-white h-10 border-b border-gray-200 w-full flex items-center justify-between">
-      <motion.div
-        initial={{ x: 0 }}
-        animate={{ x: isSidebarOpen ? -40 : 0 }}
-        exit={{ x: 0 }}
-        transition={smoothTransition}
-        className="flex items-center gap-2 "
-      >
-        <Button
-          onClick={toggleSidebar}
-          variant={"ghost"}
-          size={"icon-sm"}
-          className={cn(
-            isSidebarOpen ? "opacity-0 pointer-events-none" : "opacity-100",
-            "transition-all duration-300",
-          )}
-        >
-          <PanelRight className="text-gray-600!" />
-        </Button>
+  usePageName();
 
-        <span>header</span>
-      </motion.div>
+  return (
+    <header className="bg-white h-12 ">
+      <div className="flex items-center justify-between max-w-7xl px-2 py-1.75">
+        <motion.div
+          initial={{ x: 0 }}
+          animate={{ x: isSidebarOpen ? -40 : 0 }}
+          exit={{ x: 0 }}
+          transition={smoothTransition}
+          className="flex items-center gap-2 "
+        >
+          <Button
+            onClick={toggleSidebar}
+            variant={"ghost"}
+            size={"icon-sm"}
+            className={cn(
+              isSidebarOpen ? "opacity-0  pointer-events-none" : "opacity-100",
+              "transition-all duration-300",
+            )}
+          >
+            <PanelRight className="text-gray-600!" />
+          </Button>
+
+          <Pagename />
+        </motion.div>
+
+        <div>Button</div>
+      </div>
     </header>
   );
 };
