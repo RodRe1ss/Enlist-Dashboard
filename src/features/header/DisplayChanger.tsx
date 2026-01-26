@@ -13,13 +13,16 @@ const iconOptions = {
 
 const DisplayChanger = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentDisplay, setCurrentDisplay] = useState("");
+  const [currentDisplay, setCurrentDisplay] = useState<"kanban" | "list">(
+    "kanban",
+  );
+
+  const Icon = iconOptions[currentDisplay];
 
   return (
     <div className="relative">
       <Button
         variant={"ghost"}
-        size={"sm"}
         className="text-gray-600! gap-3"
         onClick={() => setIsOpen((prev) => !prev)}
       >
@@ -37,8 +40,15 @@ const DisplayChanger = () => {
             }}
             exit={{ y: -10, opacity: 0 }}
             transition={smoothTransition}
-            className=" w-60 h-72  absolute top-full right-0 rounded-md bg-white border border-gray-200 shadow-xs p-1 z-20"
-          ></motion.div>
+            className=" w-60 h-72  absolute top-full right-0 rounded-md bg-white border border-gray-200 shadow-xs p-2 z-20 flex flex-col gap-2"
+          >
+            <h3 className="text-gray-700">Layout</h3>
+            <Button variant={"ghost"} className="justify-start gap-2 w-full">
+              <Icon />
+
+              <span className="capitalize">{currentDisplay}</span>
+            </Button>
+          </motion.div>
         ) : null}
       </AnimatePresence>
     </div>
