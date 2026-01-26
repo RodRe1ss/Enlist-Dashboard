@@ -10,6 +10,8 @@ import { smoothTransition } from "@/lib/animations/transitions";
 import usePageName from "./usePageName";
 import Pagename from "./Pagename";
 
+import DisplayChanger from "./DisplayChanger";
+
 const Header = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebarStore(
     useShallow((state) => ({
@@ -22,7 +24,7 @@ const Header = () => {
 
   return (
     <header className="bg-white h-12 ">
-      <div className="flex items-center justify-between max-w-7xl px-2 py-1.75">
+      <div className="flex items-center justify-between max-w-7xl px-2 py-1.75 mx-auto">
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: isSidebarOpen ? -40 : 0 }}
@@ -45,7 +47,7 @@ const Header = () => {
           <Pagename />
         </motion.div>
 
-        <div>Button</div>
+        <DisplayChanger />
       </div>
     </header>
   );
