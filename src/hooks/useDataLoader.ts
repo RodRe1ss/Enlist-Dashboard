@@ -1,3 +1,5 @@
+"use client";
+
 import { getProjects } from "@/features/projects/actions";
 import { useProjectStore } from "@/features/projects/store";
 import { getUser } from "@/features/user/actions";
@@ -5,15 +7,20 @@ import { useUserStore } from "@/features/user/store";
 import { getWorkspaces } from "@/features/workspaces/actions";
 import { useWorkspaceStore } from "@/features/workspaces/store";
 import { useEffect, useState } from "react";
+import { useShallow } from "zustand/shallow";
 
 const useDataLoader = () => {
   const [loading, setLoading] = useState(true);
+  const currentWorkspace = useWorkspaceStore(
+    useShallow((state) => state.currentWorkspace),
+  );
 
   useEffect(() => {
-    const handleData = async () => {
+    let cancelled = false;
+
+    const load = async () => {
       try {
         const user = await getUser();
-
         useUserStore.getState().setUser(user);
 
         if (!user) {
@@ -23,8 +30,14 @@ const useDataLoader = () => {
           return;
         }
 
-        const workspaces = await getWorkspaces(user.id);
+        const workspaceId = currentWorkspace ?? `wrk_gen_${user.id}`;
 
+        if (!currentWorkspace) {
+          useWorkspaceStore.getState().setCurrentWorkspace(workspaceId);
+          return;
+        }
+
+        const workspaces = await getWorkspaces(user.id);
         useWorkspaceStore.getState().setWorkspaces(workspaces);
 
         if (!workspaces.length) {
@@ -33,25 +46,21 @@ const useDataLoader = () => {
           return;
         }
 
-        const projects = await getProjects(workspaces[0].id);
-
+        const projects = await getProjects(workspaceId);
         useProjectStore.getState().setProjects(projects);
-
-        await new Promise((r) => setTimeout(r, 2000));
       } catch (error) {
         console.log(error);
-
-        // optional: reset everything on hard failure
-        useUserStore.getState().resetUser();
-        useWorkspaceStore.getState().setWorkspaces([]);
-        useProjectStore.getState().setProjects([]);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
-    handleData();
-  }, []);
+    load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [currentWorkspace]);
 
   return { loading };
 };

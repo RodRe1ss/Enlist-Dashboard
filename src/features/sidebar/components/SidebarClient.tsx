@@ -21,14 +21,11 @@ import { motion } from "motion/react";
 import { smoothTransition } from "@/lib/animations/transitions";
 
 type Props = {
-  data: {
-    user: User;
-    workspaces: Workspace[];
-    projects: Project[];
-  };
+  user: User;
+  projects: Project[];
 };
 
-const SidebarClient = ({ data }: Props) => {
+const SidebarClient = ({ user, projects }: Props) => {
   const { isSidebarOpen, toggleSidebar } = useSidebarStore(
     useShallow((state) => ({
       isSidebarOpen: state.isSidebarOpen,
@@ -50,7 +47,7 @@ const SidebarClient = ({ data }: Props) => {
       {/* Sidebar top */}
       <div className="flex items-center justify-between h-12 ">
         {/* Profile Button */}
-        <ProfileButton user={data?.user} />
+        <ProfileButton user={user} />
 
         {/* Sidebar layout button */}
         <Button
@@ -67,7 +64,7 @@ const SidebarClient = ({ data }: Props) => {
       <SidebarActions />
 
       {/* Sidebar Projects */}
-      <SidebarProjects projects={data?.projects} />
+      <SidebarProjects projects={projects} />
 
       {/* Sidebar Bottom link */}
       <div className="mt-auto flex items-center gap-2 hover:bg-gray-200 p-1.5 rounded-sm transition-all cursor-pointer ">
