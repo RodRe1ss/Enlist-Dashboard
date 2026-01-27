@@ -1,4 +1,5 @@
 import { WORKSPACES_SEED } from "@/db/mock";
+import { delay } from "@/lib/utils";
 
 let workspaces = [...WORKSPACES_SEED];
 
@@ -8,15 +9,16 @@ export const getWorkspaces = async (userId: string) => {
     (workspace) => workspace.ownerId === userId,
   );
 
+  await delay(500);
   return results;
 };
 
-export const getWorkspaceById = async (id: string) => {
-  const result = workspaces.find((workspace) => workspace.id === id);
+// export const getWorkspaceById = async (id: string) => {
+//   const result = workspaces.find((workspace) => workspace.id === id);
 
-  if (!result) throw new Error("Workspace not found");
+//   if (!result) throw new Error("Workspace not found");
 
-  return result;
-};
+//   return result;
+// };
 
 export const resetWorkspaces = async () => (workspaces = [...WORKSPACES_SEED]);

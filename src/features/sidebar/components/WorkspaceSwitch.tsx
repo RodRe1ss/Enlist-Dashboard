@@ -24,10 +24,7 @@ const WorkspaceSwitch = () => {
             className={"justify-between px-2 hover:bg-gray-100"}
             variant={"ghost"}
             key={workspace.id}
-            onClick={() => {
-              console.log(workspace.id, "Id");
-              setCurrentWorkspace(workspace.id);
-            }}
+            onClick={() => setCurrentWorkspace(workspace.id)}
           >
             <span className="capitalize text-gray-600! text-sm">
               {workspace.name.split("_").join(" ")}

@@ -1,14 +1,25 @@
 import { Project } from "@/types";
 import { create } from "zustand";
+import { getProjects } from "./actions";
 
 type ProjectStore = {
-  projects: Project[] | null;
-  setProjects: (projects: Project[]) => void;
-  resetProjects: () => void;
+  projects: Project[] | [];
+  loading: boolean;
+  loadProjects: (workspaceId: string) => void;
 };
 
 export const useProjectStore = create<ProjectStore>()((set) => ({
   projects: [],
-  setProjects: (projects: Project[]) => set({ projects }),
-  resetProjects: () => set({ projects: [] }),
+  loading: true,
+  loadProjects: async (workspaceId: string) => {
+    const projects = await getProjects(workspaceId as string);
+
+    if (!workspaceId) return console.error("Workspace ID not found");
+
+    set({
+      projects,
+      loading: false,
+    });
+    return;
+  },
 }));

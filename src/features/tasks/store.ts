@@ -1,14 +1,22 @@
 import { Task } from "@/types";
 import { create } from "zustand";
+import { getTasks } from "./actions";
 
 type TaskStore = {
-  tasks: Task[] | null;
-  setTasks: (tasks: Task[]) => void;
-  resetTasks: () => void;
+  tasks: Task[] | [];
+  loading: boolean;
+  loadTasks: (projectId: string) => void;
 };
 
 export const useTaskStore = create<TaskStore>()((set) => ({
-  tasks: null,
-  setTasks: (tasks) => set({ tasks }),
-  resetTasks: () => set({ tasks: null }),
+  tasks: [],
+  loading: true,
+  loadTasks: async (projectId: string) => {
+    const tasks = await getTasks(projectId);
+
+    set({
+      tasks,
+      loading: false,
+    });
+  },
 }));

@@ -1,17 +1,21 @@
 import { User } from "@/types";
 import { create } from "zustand";
+import { getUser } from "./actions";
 
 type UserStore = {
   user: User | null;
-  setUser: (user: User) => void;
-  resetUser: () => void;
+  loading: boolean;
+  loadUser: () => void;
 };
 
 export const useUserStore = create<UserStore>()((set) => ({
   user: null,
-  setUser: (user: User) =>
+  loading: true,
+  loadUser: async () => {
+    const user = await getUser();
     set({
       user,
-    }),
-  resetUser: () => set({ user: null }),
+      loading: false,
+    });
+  },
 }));

@@ -1,4 +1,5 @@
 import { PROJECTS_SEED } from "@/db/mock";
+import { delay } from "@/lib/utils";
 
 let projects = [...PROJECTS_SEED];
 
@@ -8,15 +9,16 @@ export const getProjects = async (workspaceId: string) => {
     (project) => project.workspaceId === workspaceId,
   );
 
+  await delay(500);
   return results;
 };
 
-export const getProjectById = async (id: string) => {
-  const result = projects.find((project) => project.id === id);
+// export const getProjectById = async (id: string) => {
+//   const result = projects.find((project) => project.id === id);
 
-  if (!result) throw new Error("Project not found");
+//   if (!result) throw new Error("Project not found");
 
-  return result;
-};
+//   return result;
+// };
 
 export const resetProjects = async () => (projects = [...PROJECTS_SEED]);

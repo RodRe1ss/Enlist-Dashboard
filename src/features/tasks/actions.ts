@@ -1,4 +1,5 @@
 import { TASKS_SEED } from "@/db/mock";
+import { delay } from "@/lib/utils";
 
 let tasks = [...TASKS_SEED];
 
@@ -7,15 +8,16 @@ let tasks = [...TASKS_SEED];
 export const getTasks = async (projectId: string) => {
   const results = tasks.filter((task) => task.projectId === projectId);
 
+  await delay(500);
   return results;
 };
 
-export const getTaskById = async (id: string) => {
-  const result = tasks.find((task) => task.id === id);
+// export const getTaskById = async (id: string) => {
+//   const result = tasks.find((task) => task.id === id);
 
-  if (!result) throw new Error("Task not found");
+//   if (!result) throw new Error("Task not found");
 
-  return result;
-};
+//   return result;
+// };
 
 export const resetTasks = async () => (tasks = [...TASKS_SEED]);

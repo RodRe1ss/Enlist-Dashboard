@@ -5,15 +5,17 @@ import Header from "@/features/header/Header";
 import Sidebar from "@/features/sidebar/components/Sidebar";
 import SidebarMobile from "@/features/sidebar/components/SidebarMobile";
 import useDataLoader from "@/hooks/useDataLoader";
+import useRealtimeLoader from "@/hooks/useRealtimeLoader";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const Main = ({ children }: Props) => {
-  const { loading } = useDataLoader();
+  const { loading: dataLoading } = useDataLoader();
+  const { loading: realtimeLoading } = useRealtimeLoader();
 
-  if (loading) {
+  if (dataLoading && realtimeLoading) {
     return (
       <div className="h-screen w-full flex justify-center items-center">
         <Loading />

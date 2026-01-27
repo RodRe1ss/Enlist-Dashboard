@@ -1,22 +1,33 @@
 import { Workspace } from "@/types";
 import { create } from "zustand";
+import { getWorkspaces } from "./actions";
 
 type WorkspaceStore = {
   workspaces: Workspace[] | [];
   currentWorkspace: string | null;
-  setCurrentWorkspace: (id: string | null) => void;
-  setWorkspaces: (workspaces: Workspace[] | []) => void;
+  loading: boolean;
+  setCurrentWorkspace: (workspaceId: string) => void;
+  loadWorkspaces: (userId: string) => void;
 };
 
 export const useWorkspaceStore = create<WorkspaceStore>()((set) => ({
   workspaces: [],
   currentWorkspace: null,
-  setCurrentWorkspace: (id: string | null) =>
+  loading: true,
+  setCurrentWorkspace: (workspaceId: string) =>
     set({
-      currentWorkspace: id,
+      currentWorkspace: workspaceId,
     }),
-  setWorkspaces: (workspaces: Workspace[] | []) =>
+  loadWorkspaces: async (userId: string) => {
+    const workspaces = await getWorkspaces(userId as string);
+
+    if (!userId) return console.error("User ID not found");
+
     set({
       workspaces,
-    }),
+      currentWorkspace: `wrk_gen_${userId}`,
+      loading: false,
+    });
+    return;
+  },
 }));
