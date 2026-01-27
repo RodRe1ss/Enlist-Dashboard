@@ -30,7 +30,7 @@ const SidebarProjects = ({ projects }: Props) => {
           {projects.map((project) => (
             <Link
               key={project.id}
-              href={"#"}
+              href={`/projects/${project.id}`}
               className="flex items-center gap-2.5 px-1.5 py-2 hover:bg-gray-200 rounded-sm"
             >
               <div

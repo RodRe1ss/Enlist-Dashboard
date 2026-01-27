@@ -10,7 +10,7 @@ const usePageName = () => {
   useEffect(() => {
     const handlePageName = () => {
       if (pathname === "/") {
-        setPageName(["overview"]);
+        setPageName(["today"]);
         return;
       }
 

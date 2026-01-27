@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar1, CalendarDays, Plus, Search, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const SidebarActions = () => {
   return (
@@ -28,27 +29,42 @@ const SidebarActions = () => {
       {/* Tasks */}
       <Button
         variant={"ghost"}
-        className="justify-start gap-2 h-8.5 rounded-sm  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5 text-gray-600"
+        className="justify-start gap-2 rounded-sm  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5 text-gray-600"
+        asChild
       >
-        <Calendar1 className=" size-5.5" />
+        <Link href={"/"} className="flex items-center gap-2 w-full h-8.5">
+          <Calendar1 className=" size-5.5" />
 
-        <span>Today</span>
+          <span>Today</span>
+        </Link>
       </Button>
       <Button
         variant={"ghost"}
-        className="justify-start gap-2 h-8.5 rounded-sm!  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5! text-gray-600 "
+        className="justify-start gap-2  rounded-sm!  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5! text-gray-600 "
+        asChild
       >
-        <CalendarDays className="size-5.5" />
+        <Link
+          href={"/upcoming"}
+          className="flex items-center gap-2 w-full h-8.5"
+        >
+          <CalendarDays className="size-5.5" />
 
-        <span>Upcoming</span>
+          <span>Upcoming</span>
+        </Link>
       </Button>
       <Button
         variant={"ghost"}
-        className="justify-start gap-2 h-8.5 rounded-sm!  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5! text-gray-600 "
+        className="justify-start gap-2  rounded-sm!  hover:bg-gray-200 active:bg-gray-300 px-2! py-1.5! text-gray-600 "
+        asChild
       >
-        <Sparkles className="size-5.5" />
+        <Link
+          href={"/filters"}
+          className="flex items-center gap-2 w-full h-8.5"
+        >
+          <Sparkles className="size-5.5" />
 
-        <span>Filters & labels</span>
+          <span>Filters & labels</span>
+        </Link>
       </Button>
     </div>
   );
