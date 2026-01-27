@@ -10,7 +10,7 @@ import { smoothTransition } from "@/lib/animations/transitions";
 import usePageName from "./usePageName";
 import Pagename from "./Pagename";
 
-import DisplayChanger from "./DisplayChanger";
+import LayoutModal from "./LayoutModal";
 
 const Header = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebarStore(
@@ -47,7 +47,7 @@ const Header = () => {
           <Pagename />
         </motion.div>
 
-        <DisplayChanger />
+        <LayoutModal />
       </div>
     </header>
   );
