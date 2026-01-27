@@ -1,7 +1,7 @@
 "use client";
 
 import Loading from "@/components/shared/loading";
-import Header from "@/features/header/Header";
+import Header from "@/features/header/components/Header";
 import Sidebar from "@/features/sidebar/components/Sidebar";
 import SidebarMobile from "@/features/sidebar/components/SidebarMobile";
 import useDataLoader from "@/hooks/useDataLoader";
@@ -35,7 +35,7 @@ const Main = ({ children }: Props) => {
 
       <main className="flex h-screen relative overflow-hidden flex-1 bg-gray-100">
         <div className=" min-h-0 h-full w-full bg-gray-100 p-2">
-          <div className="border border-gray-200 rounded-md overflow-hidden min-h-0 h-full w-full flex flex-col">
+          <div className="border border-gray-200 bg-white rounded-md overflow-hidden min-h-0 h-full w-full flex flex-col">
             {/* Header */}
             <Header />
             {children}

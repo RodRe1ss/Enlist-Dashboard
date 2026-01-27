@@ -259,6 +259,12 @@ small {
   @apply text-neutral-600 font-normal;
 }
 
+/* max-w-7xl mx-auto */
+
+.max-container {
+  @apply px-2 py-1.75;
+}
+
 /* colors */
 .primary-mix {
   @apply bg-linear-210 from-primary-400 to-primary-300;

@@ -25,7 +25,7 @@ export type Task = {
   title: string;
   priority: "low" | "medium" | "high";
   status: "not-started" | "in-progress" | "in-review" | "completed" | "overdue";
-  dueDate: string;
-  createdAt: string;
-  updatedAt: string;
+  dueDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };

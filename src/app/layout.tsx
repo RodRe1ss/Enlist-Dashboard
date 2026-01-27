@@ -3,10 +3,6 @@ import "@/styles/globals.css";
 import { Inter, Manrope } from "next/font/google";
 import Main from "@/components/layout/main/Main";
 
-import Sidebar from "@/features/sidebar/components/Sidebar";
-import Header from "@/features/header/Header";
-import SidebarMobile from "@/features/sidebar/components/SidebarMobile";
-
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
@@ -30,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${inter.variable} antialiased bg-gray-100! w-full flex h-screen relative overflow-hidden`}
+        className={`${manrope.variable} ${inter.variable} antialiased bg-gray-100 w-full flex h-screen relative overflow-hidden`}
       >
         {/* Main  */}
         <Main>{children}</Main>

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import usePageName from "./usePageName";
+import usePageName from "../usePageName";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 

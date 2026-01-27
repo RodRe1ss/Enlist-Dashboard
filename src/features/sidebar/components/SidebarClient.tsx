@@ -5,7 +5,7 @@ import { useSidebarStore } from "../store/useSidebarStore";
 import { useShallow } from "zustand/shallow";
 
 // Types
-import { Project, User, Workspace } from "@/types";
+import { Project, User } from "@/types";
 
 // Icons
 import { HelpCircle, PanelLeft } from "lucide-react";
@@ -35,12 +35,11 @@ const SidebarClient = ({ user, projects }: Props) => {
 
   return (
     <motion.aside
-      initial={{ marginLeft: 0, opacity: 0 }}
+      initial={{ marginLeft: 0 }}
       animate={{
         marginLeft: isSidebarOpen ? 0 : -224,
-        opacity: isSidebarOpen ? 100 : 0,
       }}
-      exit={{ marginLeft: 0, opacity: 0 }}
+      exit={{ marginLeft: 0 }}
       transition={smoothTransition}
       className="bg-gray-100 w-56 h-full flex flex-col py-2 pl-2 pr-2 sm:pr-0 shadow-lg sm:shadow-none z-20 sm:z-0"
     >

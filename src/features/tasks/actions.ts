@@ -5,11 +5,9 @@ let tasks = [...TASKS_SEED];
 
 // crypto.randomUUID e.g example "usr_${crypto.randomUUID().split("-").slice(0, 3).join("")}"
 
-export const getTasks = async (projectId: string) => {
-  const results = tasks.filter((task) => task.projectId === projectId);
-
+export const getTasks = async () => {
   await delay(500);
-  return results;
+  return tasks;
 };
 
 // export const getTaskById = async (id: string) => {

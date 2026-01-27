@@ -5,14 +5,14 @@ import { getTasks } from "./actions";
 type TaskStore = {
   tasks: Task[] | [];
   loading: boolean;
-  loadTasks: (projectId: string) => void;
+  loadTasks: () => void;
 };
 
 export const useTaskStore = create<TaskStore>()((set) => ({
   tasks: [],
   loading: true,
-  loadTasks: async (projectId: string) => {
-    const tasks = await getTasks(projectId);
+  loadTasks: async () => {
+    const tasks = await getTasks();
 
     set({
       tasks,

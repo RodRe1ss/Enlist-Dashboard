@@ -9,8 +9,6 @@ type Props = {
 };
 
 const SidebarProjects = ({ projects }: Props) => {
-  console.log(projects, "Workspaced");
-
   return (
     <div className="flex flex-col gap-0.5 mt-20">
       <div className="rounded-sm flex items-center justify-between hover:bg-gray-200 p-1.5 group">

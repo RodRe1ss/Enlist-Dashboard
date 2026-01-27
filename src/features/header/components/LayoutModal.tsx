@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { Columns3Cog, SquareKanban, SquareMenu } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { useWorkspaceStore } from "../workspaces/store";
+import { useWorkspaceStore } from "../../workspaces/store";
 import { useShallow } from "zustand/shallow";
 
 const LayoutModal = () => {
